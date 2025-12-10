@@ -14,17 +14,28 @@ export default function Dashboard({ profile }: DashboardProps) {
       {/* Header */}
       <header className="border-b border-white/10 bg-black/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <div className="flex items-center gap-6">
+            <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent cursor-pointer hover:opacity-80 transition-opacity">
               Nexar
             </div>
+            <nav className="flex items-center gap-4">
+              <button className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                Home
+              </button>
+              <button className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                Profile
+              </button>
+              <button className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                Communities
+              </button>
+            </nav>
           </div>
           
           <div className="flex items-center gap-4">
             <button className="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-sm font-medium">
               Settings
             </button>
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity">
               {profile.username[0].toUpperCase()}
             </div>
           </div>
@@ -209,4 +220,5 @@ export default function Dashboard({ profile }: DashboardProps) {
     </div>
   );
 }
+
 
