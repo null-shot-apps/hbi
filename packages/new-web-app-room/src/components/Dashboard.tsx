@@ -80,8 +80,9 @@ export default function Dashboard({ profile }: DashboardProps) {
       </aside>
 
       {/* Main Content Area */}
-      <div className="flex-1 overflow-y-auto">{currentView === 'dashboard' && (
-        <main className="max-w-7xl mx-auto px-8 py-8">
+      <div className="flex-1 overflow-y-auto">
+        {currentView === 'dashboard' && (
+          <main className="max-w-7xl mx-auto px-8 py-8">
 
         {/* Profile Header */}
         <div className="rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 p-8 mb-8">
@@ -255,10 +256,32 @@ export default function Dashboard({ profile }: DashboardProps) {
             </div>
           </div>
         )}
-      </main>
+          </main>
+        )}
+
+        {currentView === 'profile' && (
+          <main className="max-w-7xl mx-auto px-8 py-8">
+            <div className="rounded-xl bg-white/5 border border-white/10 p-8">
+              <h2 className="text-2xl font-bold mb-6">Full Profile View</h2>
+              <p className="text-gray-400">Detailed profile page coming soon...</p>
+            </div>
+          </main>
+        )}
+
+        {currentView === 'communities' && (
+          <main className="max-w-7xl mx-auto px-8 py-8">
+            <div className="rounded-xl bg-white/5 border border-white/10 p-8">
+              <h2 className="text-2xl font-bold mb-6">Communities</h2>
+              <p className="text-gray-400">Join and manage communities...</p>
+            </div>
+          </main>
+        )}
+      </div>
     </div>
   );
 }
+
+
 
 
 
