@@ -1,6 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import BadgeSystem from '../BadgeSystem';
+import ActivityFeed from '../ActivityFeed';
+import Portfolio from '../Portfolio';
+import Communities from '../Communities';
+import IssuerDashboard from '../IssuerDashboard';
 
 interface DashboardProps {
   profile: any;
@@ -8,7 +13,7 @@ interface DashboardProps {
 
 export default function Dashboard({ profile }: DashboardProps) {
   const [activeTab, setActiveTab] = useState<'overview' | 'badges' | 'projects'>('overview');
-  const [currentView, setCurrentView] = useState<'dashboard' | 'profile' | 'communities'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'profile' | 'communities' | 'issuer'>('dashboard');
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-purple-950/20 to-black text-white flex">
@@ -59,6 +64,18 @@ export default function Dashboard({ profile }: DashboardProps) {
           </button>
 
           <div className="my-4 border-t border-white/10"></div>
+
+          <button
+            onClick={() => setCurrentView('issuer')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-all ${
+              currentView === 'issuer'
+                ? 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-white border border-purple-500/30'
+                : 'text-gray-400 hover:text-white hover:bg-white/5'
+            }`}
+          >
+            <span className="text-xl">🏅</span>
+            <span className="font-medium">Issuer Panel</span>
+          </button>
 
           <button className="w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 text-gray-400 hover:text-white hover:bg-white/5 transition-all">
             <span className="text-xl">⚙️</span>
@@ -215,46 +232,16 @@ export default function Dashboard({ profile }: DashboardProps) {
             </div>
 
             {/* Activity Feed */}
-            <div className="rounded-xl bg-white/5 border border-white/10 p-6">
-              <h2 className="text-xl font-bold mb-4">Recent Activity</h2>
-              <div className="text-center py-12 text-gray-500">
-                <div className="text-5xl mb-4">📊</div>
-                <p>No activity yet. Start building your passport!</p>
-              </div>
-            </div>
+            <ActivityFeed />
           </div>
         )}
 
         {activeTab === 'badges' && (
-          <div className="rounded-xl bg-white/5 border border-white/10 p-6">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold">Your Badges</h2>
-              <button className="px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm font-medium hover:from-purple-600 hover:to-pink-600 transition-all">
-                Request Badge
-              </button>
-            </div>
-            <div className="text-center py-12 text-gray-500">
-              <div className="text-5xl mb-4">🎖️</div>
-              <p>No badges earned yet</p>
-              <p className="text-sm mt-2">Complete achievements to earn your first badge</p>
-            </div>
-          </div>
+          <BadgeSystem />
         )}
 
         {activeTab === 'projects' && (
-          <div className="rounded-xl bg-white/5 border border-white/10 p-6">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold">Your Projects</h2>
-              <button className="px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm font-medium hover:from-purple-600 hover:to-pink-600 transition-all">
-                Add Project
-              </button>
-            </div>
-            <div className="text-center py-12 text-gray-500">
-              <div className="text-5xl mb-4">📂</div>
-              <p>No projects yet</p>
-              <p className="text-sm mt-2">Showcase your work to build your portfolio</p>
-            </div>
-          </div>
+          <Portfolio persona={profile.persona} />
         )}
           </main>
         )}
@@ -270,16 +257,26 @@ export default function Dashboard({ profile }: DashboardProps) {
 
         {currentView === 'communities' && (
           <main className="max-w-7xl mx-auto px-8 py-8">
-            <div className="rounded-xl bg-white/5 border border-white/10 p-8">
-              <h2 className="text-2xl font-bold mb-6">Communities</h2>
-              <p className="text-gray-400">Join and manage communities...</p>
-            </div>
+            <Communities />
+          </main>
+        )}
+
+        {currentView === 'issuer' && (
+          <main className="max-w-7xl mx-auto px-8 py-8">
+            <IssuerDashboard />
           </main>
         )}
       </div>
     </div>
   );
 }
+
+
+
+
+
+
+
 
 
 
